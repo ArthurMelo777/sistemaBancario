@@ -3,7 +3,6 @@ from classes import *
 bd = BD()
 bd.criarTabela()
 
-conta1 = Conta('Arthur', 500.00, 'C', '0000', '00000-0')
+#conta1 = Conta('Djair', 500.00, 'C', '0000', '00000-1')
 #bd.inserirValores(conta1)
-conta1.depositarValor(100.0)
-print(conta1.saldo)
+print(bd.lerValores('1'))

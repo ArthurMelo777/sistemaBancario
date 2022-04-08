@@ -18,9 +18,13 @@ class BD:
         self.cursor.execute("INSERT INTO Contas VALUES (NULL, '"+c.nome+"', "+str(c.saldo)+", '"+c.tipoConta+"', '"+c.agencia+"', '"+c.numeroConta+"')")
         self.banco.commit()
     
-    def lerValores(self, numeroConta):
-        self.cursor.execute("SELECT * FROM Contas WHERE numeroConta = '"+numeroConta+"'")
-        r = self.cursor.fetchall()[0]
+    def lerValores(self, *id):
+        if len(id) == 0:
+            self.cursor.execute("SELECT * FROM Contas")
+            r = self.cursor.fetchall()
+        else:
+            self.cursor.execute("SELECT * FROM Contas WHERE id = "+id[0]+"")
+            r = self.cursor.fetchall()[0]
         return r
     
     def atualizarValores(self, saldo, numeroConta):
