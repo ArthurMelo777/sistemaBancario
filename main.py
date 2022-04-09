@@ -1,8 +1,29 @@
-from classes import *
+from classes import bd, conta, menu
+import os
 
-bd = BD()
-bd.criarTabela()
+## CRIAR CONEXÃO E TABELA
+db = bd.BD()
+db.criarTabela()
 
-#conta1 = Conta('Djair', 500.00, 'C', '0000', '00000-1')
-#bd.inserirValores(conta1)
-print(bd.lerValores('1'))
+## MENU
+m = menu.Menu()
+opc = m.menu()
+
+while opc != 0:
+    if opc == 1:
+        m.inserir()
+        opc = m.continuar()
+    elif opc == 2:
+        m.lerTudo()
+        opc = m.continuar()
+    elif opc == 3:
+        m.lerConta()
+        opc = m.continuar()
+    elif opc == 4:
+        m.atualizarConta()
+        opc = m.continuar()
+    elif opc == 5:
+        m.removerConta()
+        opc = m.continuar()
+    else:
+        m.sair()

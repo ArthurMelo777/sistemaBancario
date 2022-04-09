@@ -1,4 +1,5 @@
-import sqlite3
+import sqlite3, os
+from classes import conta
 
 class BD:
     banco = sqlite3.connect('usuarios.db')
@@ -23,27 +24,17 @@ class BD:
             self.cursor.execute("SELECT * FROM Contas")
             r = self.cursor.fetchall()
         else:
-            self.cursor.execute("SELECT * FROM Contas WHERE id = "+id[0]+"")
+            self.cursor.execute("SELECT * FROM Contas WHERE id = "+str(id[0])+"")
             r = self.cursor.fetchall()[0]
         return r
     
-    def atualizarValores(self, saldo, numeroConta):
-        self.cursor.execute("UPDATE Contas SET saldo = "+str(saldo)+" WHERE numeroConta = '"+numeroConta+"'")
+    def atualizarValores(self, valor, id):
+        v = self.lerValores(id)
+        c = conta.Conta(v[1], v[2], v[3], v[4], v[5])
+        saldo = c.movimentarValor(valor)
+        self.cursor.execute("UPDATE Contas SET saldo = "+str(saldo)+" WHERE id = "+id+"")
         self.banco.commit()
 
-class Conta:
-    bd = BD()
-    def __init__ (self, nome, saldo, tipoConta, agencia, numeroConta):
-        self.nome = nome
-        self.saldo = saldo
-        self.tipoConta = tipoConta
-        self.agencia = agencia
-        self.numeroConta = numeroConta
-    
-    def depositarValor(self, valor):
-        self.saldo = self.saldo + valor
-        self.bd.atualizarValores(self.saldo, self.numeroConta)
-    
-    def sacarValor(self, valor):
-        self.saldo = self.saldo - valor
-        self.bd.atualizarValores(self.saldo, self.numeroConta)
+    def excluirValores(self, id):
+        self.cursor.execute("DELETE FROM Contas WHERE id = "+id+"")
+        self.banco.commit()
