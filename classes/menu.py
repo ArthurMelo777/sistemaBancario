@@ -44,7 +44,7 @@ class Menu:
     def atualizarConta(self):
         print("Digite, respectivamente, o valor e o ID da conta que deseja atualizar: ")
         print("OBS: Os valores devem ser negativos para saques e positivos para depósitos")
-        v = input()
+        v = input().split(' ')
         
         self.bd.atualizarValores(int(v[0]), v[1])
         press = input("Valor atualizado com sucesso! Press qqr tecla para continuar")
