@@ -8,3 +8,26 @@ class Conta:
     
     def movimentarValor(self, valor):
         return self.saldo + valor
+    
+    def verificarNome(self):
+        if len(self.nome) > 255 or len(self.nome) == 0:
+            return True
+        else: return False
+    
+    def verificarTipoConta(self):
+        string = self.tipoConta.upper()
+        if string == 'POUPANÇA' or string == 'POUPANCA' or string == 'CORRENTE' or string == 'C' or string == 'P':
+            return False
+        else:
+            return True
+    
+    def verificarAgencia(self):
+        if len(self.agencia) == 4:
+            return False
+        else: return True
+    
+    def verificarNumeroConta(self):
+        array = str(self.numeroConta).split()
+        if len(self.numeroConta) == 7:
+            return False
+        else: return True

@@ -4,6 +4,7 @@ import os
 class Menu:
     bd = bd.BD()
     def menu(self):
+        os.system('cls')
         print("BEM VINDO AO SEU APP DE BANCO!")
         print("Escolha a opção desejada abaixo:")
         print("1 - Inserir conta")
@@ -17,7 +18,7 @@ class Menu:
         return opc
     
     def inserir(self):
-        print("Digite, respectivamente, o nome, o saldo, o tipo da conta, a agência e o número da conta que deseja cadastras: ")
+        print("Digite, na mesma linha e respectivamente: o NOME, o SALDO, o TIPO DA CONTA, a AGÊNCIA e o NÚMERO DA CONTA que deseja cadastrar: ")
         c = input().split(' ')
         con = conta.Conta(c[0], c[1], c[2], c[3], c[4])
         self.bd.inserirValores(con)

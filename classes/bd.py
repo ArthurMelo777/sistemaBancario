@@ -16,6 +16,33 @@ class BD:
 
     def inserirValores(self, conta):
         c = conta
+
+        ## VERIFICAÇÃO
+        while c.verificarNome():    ## verificar nome
+            c.nome = input("Nome inválido. Por favor insira um nome entre 1 e 255 caracteres: ")
+            os.system('cls')
+
+        
+
+        if c.verificarTipoConta():  ## verificar tipo da conta
+            while c.verificarTipoConta():
+                c.tipoConta = input("Tipo de conta inválido. Por informe se a conta é corrente ou poupança: ")
+                os.system('cls')
+        else:
+            c.tipoConta = c.tipoConta.upper()
+            if c.tipoConta == 'POUPANÇA' or c.tipoConta == 'POUPANCA' or c.tipoConta == 'P':
+                c.tipoConta = 'P'
+            if c.tipoConta == 'CORRENTE' or c.tipoConta == 'C':
+                c.tipoConta = 'C'
+
+        while c.verificarAgencia():    ## verificar agencia
+            c.agencia = input("Agência inválida. Por favor insira uma agência válida (ex: 0000): ")
+            os.system('cls')
+        
+        while c.verificarNumeroConta():  ## verificar numero da conta
+            c.numeroConta = input("Número de conta inválido. Por favor insira um número de conta válido (ex: 0000000): ")
+            os.system('cls')
+
         self.cursor.execute("INSERT INTO Contas VALUES (NULL, '"+c.nome+"', "+str(c.saldo)+", '"+c.tipoConta+"', '"+c.agencia+"', '"+c.numeroConta+"')")
         self.banco.commit()
     
