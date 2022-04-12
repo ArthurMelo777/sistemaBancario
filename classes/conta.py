@@ -27,7 +27,6 @@ class Conta:
         else: return True
     
     def verificarNumeroConta(self):
-        array = str(self.numeroConta).split()
-        if len(self.numeroConta) == 7:
+        if len(self.numeroConta) == 7 and self.numeroConta[5] == "-":
             return False
         else: return True

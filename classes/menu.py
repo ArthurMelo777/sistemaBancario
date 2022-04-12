@@ -71,4 +71,5 @@ class Menu:
         return opc
     
     def sair(self):
+        print("Obrigado por utilizar nosso programa, até a próxima!")
         self.bd.close()

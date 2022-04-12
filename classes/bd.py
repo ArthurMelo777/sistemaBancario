@@ -40,7 +40,7 @@ class BD:
             os.system('cls')
         
         while c.verificarNumeroConta():  ## verificar numero da conta
-            c.numeroConta = input("Número de conta inválido. Por favor insira um número de conta válido (ex: 0000000): ")
+            c.numeroConta = input("Número de conta inválido. Por favor insira um número de conta válido (ex: 00000-0): ")
             os.system('cls')
 
         self.cursor.execute("INSERT INTO Contas VALUES (NULL, '"+c.nome+"', "+str(c.saldo)+", '"+c.tipoConta+"', '"+c.agencia+"', '"+c.numeroConta+"')")
