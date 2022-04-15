@@ -1,12 +1,13 @@
-from classes import bd, conta, menu
-import os
+from classes import bd, menu
 
-## CRIAR CONEXÃO E TABELA
+# CRIAR CONEXÃO E TABELA
 db = bd.BD()
 db.criarTabela()
+db.criarTableAgencia()
 
-## MENU
-m = menu.Menu()
+# MENU
+m = menu
+
 opc = m.menu()
 
 while opc != 0:
